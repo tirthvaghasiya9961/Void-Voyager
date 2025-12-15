@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://vau12770w464"]
+
+[ext_resource type="Script" uid="uid://b52ed806dd0q4" path="res://scripts/asteroid_spawner.gd" id="1_l5w2k"]
+[ext_resource type="PackedScene" uid="uid://bivjld8n4n7dk" path="res://scenes/SPAWNER.tscn" id="1_yafkd"]
+[ext_resource type="PackedScene" uid="uid://ctdnmu6o386rq" path="res://scenes/asteroid.tscn" id="2_yafkd"]
+
+[node name="AsteroidSpawner" instance=ExtResource("1_yafkd")]
+script = ExtResource("1_l5w2k")
+scene_to_spawn = ExtResource("2_yafkd")
+spawn_interval_min = 2.0
+spawn_interval_max = 5.0
+spawn_height_variance = 150.0
+spawn_speed_variation = 0.2

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjo40brlmqq5o"]
+
+[ext_resource type="Texture2D" uid="uid://djedxroiufe70" path="res://assets/BlueRedGreen_Spacecraft_V1.0.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bdtnl7rwxje86" path="res://scripts/player.gd" id="1_g2els"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
+atlas = ExtResource("1_3vyb7")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2els")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g2els")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+rotation = 1.5708
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_qhqgy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(-7, -10, 0, -10, 1, -5, 9, -2, 9, 2, 1, 5, 0, 10, -7, 10, -5, 2, -5, -3)

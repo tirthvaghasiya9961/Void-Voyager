@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://d0x7lkp00dkw7"]
 
-[ext_resource type="Texture2D" uid="uid://crtvg1kdw5hr5" path="res://icon.svg" id="1_h2npa"]
-[ext_resource type="Script" uid="uid://cmu3qsypcj5y8" path="res://scripts/fuel.gd" id="1_vltxq"]
+[ext_resource type="Script" uid="uid://cmu3qsypcj5y8" path="res://scripts/Obstacles/fuel.gd" id="1_wdffh"]
+[ext_resource type="Texture2D" uid="uid://crtvg1kdw5hr5" path="res://icon.svg" id="2_fyxdc"]
 
 [node name="Fuel" type="RigidBody2D"]
-script = ExtResource("1_vltxq")
+script = ExtResource("1_wdffh")
 speed = 200.0
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.64, 0.64)
-texture = ExtResource("1_h2npa")
+texture = ExtResource("2_fyxdc")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 scale = Vector2(0.665, 0.665)

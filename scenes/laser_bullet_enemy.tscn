@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://bmechcr87wo0n"]
+
+[ext_resource type="PackedScene" uid="uid://cpqts4pkyq1jo" path="res://scenes/laser_bullet.tscn" id="1_5s8a2"]
+[ext_resource type="Script" uid="uid://br1idvb14tlf5" path="res://scripts/laser_bullet_enemy.gd" id="2_stw78"]
+
+[node name="LaserBulletENEMY" instance=ExtResource("1_5s8a2")]
+script = ExtResource("2_stw78")

@@ -2,16 +2,20 @@ extends CharacterBody2D
 class_name Player
 
 @onready var game: Node = %GameManager
+@onready var shop: Shop = $"../Shop"
+
 @onready var camera: Camera2D = $"../Camera2D"
 
 # Movement settings
+@export var projectile: PackedScene = null
 @export var speed: float = 300.0
 @export var acceleration: float = 25.0
 @export var friction: float = 2.0
 
-@export var health: float = 100
+@export var max_health: float = 100
+var health := max_health
 
-var enable_player_movement: bool = true
+var player_movement: bool = true
 
 ## Screen bounds (adjust based on your camera/viewport)
 #@export var top_limit: float = 50.0
@@ -69,10 +73,13 @@ var enable_player_movement: bool = true
 	## - Game over
 	## - Etc.
 
+func _ready() -> void:
+	game.handle_health()
+
 func _physics_process(delta):
 	velocity = Vector2.ZERO
 	
-	if enable_player_movement:
+	if player_movement:
 		handle_movement(delta)
 	#EDIT THIS METHOD LATER FOR SMOOTHER MOVEMENT
 	
@@ -86,6 +93,8 @@ func _physics_process(delta):
 			handle_asteroid_collision(collider)
 		elif collider is Fuel:
 			handle_fuel_collision(collider)
+		elif collider is Coin:
+			handle_coin_collision(collider)
 	
 	if is_alive():
 		game.handle_score(delta)
@@ -107,16 +116,24 @@ func handle_movement(delta):
 		velocity.y = lerp(velocity.y, speed * input_direction.y, acceleration * delta)
 	else:
 		velocity.y = lerp(velocity.y, 0.0, friction * delta)
+	
+	
+	if Input.is_action_pressed("left_click"):
+		shoot()
 
 func handle_asteroid_collision(collider: Object):
 	health -= 10
 	
 	collider.queue_free()
 	
-	print(health)
+	game.handle_health()
+
+func handle_coin_collision(collider: Object):
 	
-	#if health < 1:
-		#handle_death()
+	game.handle_coin()
+	
+	collider.queue_free()
+
 
 func handle_death():
 	#print("You Died!")
@@ -130,13 +147,34 @@ func is_alive() -> bool:
 	
 	if health <= 0 or game.current_fuel <= 0:
 		return false
-	
+		
 	return true 
+
+func take_damage(damage: float):
+	health -= damage
+	game.handle_health()
+
+func shoot():
+	
+	var instance = projectile.instantiate()
+	
+	var mouse_pos = get_global_mouse_position()
+	instance.dir = (mouse_pos - global_position).normalized()
+	instance.spawnPos = global_position
+	instance.zdex = z_index - 1
+	
+	var gamenode = get_parent()
+	gamenode.add_child(instance)
+	
+
+
+
+
 
 func entered_space_station():
 	game.toggle_label_visibility(false)
-	enable_player_movement = false
-	position.y = 257.0
+	player_movement = false
+	position.y = 540.0
 	
 	#stop score and fuel calculations
 	game.toggle_fuel = false
@@ -144,7 +182,7 @@ func entered_space_station():
 
 func exited_space_station():
 	game.toggle_label_visibility(true)
-	enable_player_movement = true
+	player_movement = true
 	
 	game.toggle_fuel = true
 	game.toggle_score = true

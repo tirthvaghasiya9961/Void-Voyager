@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://sg5n60qo5o8r"]
 
-[ext_resource type="PackedScene" uid="uid://bivjld8n4n7dk" path="res://scenes/SPAWNER.tscn" id="1_0bacm"]
-[ext_resource type="Script" uid="uid://fylwd1rt88mh" path="res://scripts/spacestation_spawner.gd" id="2_h0b3r"]
+[ext_resource type="PackedScene" uid="uid://bivjld8n4n7dk" path="res://scenes/Spawners/SPAWNER.tscn" id="1_0bacm"]
+[ext_resource type="Script" uid="uid://fylwd1rt88mh" path="res://scripts/Spawners/spacestation_spawner.gd" id="2_h0b3r"]
 [ext_resource type="PackedScene" uid="uid://biugpvosreqvm" path="res://scenes/space_station.tscn" id="3_h0b3r"]
 
 [node name="SpaceStationSpawner" instance=ExtResource("1_0bacm")]
 script = ExtResource("2_h0b3r")
-space_station_spawn_interval = 20.0
+space_station_spawn_interval = 50.0
 scene_to_spawn = ExtResource("3_h0b3r")

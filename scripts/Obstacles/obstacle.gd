@@ -1,8 +1,8 @@
 extends RigidBody2D
 class_name OBSTACLE
 
-@export var speed: float
 @export var rotation_speed: float
+@export var speed: float
 
 var spawner: Node = null
 
@@ -24,6 +24,7 @@ func _ready():
 
 func _on_screen_exited():
 	# Remove asteroid when it goes off-screen
+	#print("ok")
 	queue_free()
 
 func _exit_tree() -> void:

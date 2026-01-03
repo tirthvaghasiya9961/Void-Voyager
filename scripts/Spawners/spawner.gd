@@ -10,6 +10,9 @@ class_name SPAWNER
 @onready var marker: Marker2D = $Marker2D
 @onready var timer: Timer = $Timer
 
+var instance : Node = null
+
+#var speed: float
 var active_spawns: Array = []
 var start_spawning: bool = true
 
@@ -19,7 +22,7 @@ var start_spawning: bool = true
 	#reset_timer()
 
 func spawn():
-	var instance = scene_to_spawn.instantiate()
+	instance = scene_to_spawn.instantiate()
 	# Set random spawn position (right side of screen, random Y)
 	var spawn_pos = marker.global_position
 	spawn_pos.y += randf_range(-spawn_height_variance, spawn_height_variance)

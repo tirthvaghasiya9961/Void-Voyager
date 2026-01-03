@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkwdswg5lydid"]
+
+[ext_resource type="PackedScene" uid="uid://bivjld8n4n7dk" path="res://scenes/Spawners/SPAWNER.tscn" id="1_j7q6u"]
+[ext_resource type="Script" uid="uid://btpthnnrobhyn" path="res://scripts/Spawners/alien_spawner.gd" id="2_m8ljl"]
+[ext_resource type="PackedScene" uid="uid://bi8djt85b70r6" path="res://scenes/alien.tscn" id="3_1wu6g"]
+
+[node name="AlienSpawner" instance=ExtResource("1_j7q6u")]
+script = ExtResource("2_m8ljl")
+scene_to_spawn = ExtResource("3_1wu6g")
+spawn_interval_min = 5.0
+spawn_interval_max = 5.0

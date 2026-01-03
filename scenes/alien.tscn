@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bi8djt85b70r6"]
+
+[ext_resource type="Script" uid="uid://ca16f75yrhnmo" path="res://scripts/alien.gd" id="1_u8rjw"]
+[ext_resource type="Texture2D" uid="uid://cc43e6nrwna3n" path="res://assets/Alien1.png" id="2_3vbw7"]
+[ext_resource type="PackedScene" uid="uid://bmechcr87wo0n" path="res://scenes/laser_bullet_enemy.tscn" id="2_np108"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_np108"]
+radius = 23.0
+
+[node name="Alien" type="CharacterBody2D"]
+script = ExtResource("1_u8rjw")
+projectile = ExtResource("2_np108")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_3vbw7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_np108")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 32)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]

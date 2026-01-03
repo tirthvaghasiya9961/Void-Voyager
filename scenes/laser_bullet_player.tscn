@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://5g1miunki7jq"]
+
+[ext_resource type="PackedScene" uid="uid://cpqts4pkyq1jo" path="res://scenes/laser_bullet.tscn" id="1_8s5yt"]
+[ext_resource type="Texture2D" uid="uid://c0rb1n4q0qame" path="res://assets/16.png" id="2_3mrsq"]
+[ext_resource type="Script" uid="uid://bsj3ejm2xlvb3" path="res://scripts/laser_bullet_player.gd" id="2_xorsb"]
+
+[node name="LaserBulletPLAYER" instance=ExtResource("1_8s5yt")]
+script = ExtResource("2_xorsb")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_3mrsq")

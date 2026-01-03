@@ -1,35 +1,59 @@
-[gd_scene load_steps=6 format=3 uid="uid://d00yohj1lu2u6"]
+[gd_scene load_steps=10 format=3 uid="uid://d00yohj1lu2u6"]
 
+[ext_resource type="Texture2D" uid="uid://dhj0w6khnfd14" path="res://assets/19816.jpg" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://g5o5qlihyxbi" path="res://scripts/game_manager.gd" id="1_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://bjo40brlmqq5o" path="res://scenes/player.tscn" id="1_uwrxv"]
-[ext_resource type="PackedScene" uid="uid://vau12770w464" path="res://scenes/asteroid_spawner.tscn" id="2_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://dvt1r85ttwgtj" path="res://scenes/fuel_spawner.tscn" id="4_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://sg5n60qo5o8r" path="res://scenes/spacestation_spawner.tscn" id="5_iywne"]
+[ext_resource type="Script" uid="uid://eospkfxr6y75" path="res://scripts/shop.gd" id="2_p57ef"]
+[ext_resource type="PackedScene" uid="uid://vau12770w464" path="res://scenes/Spawners/asteroid_spawner.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://o6xwg7p3vlpp" path="res://scenes/Spawners/coin_spawner.tscn" id="3_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://dvt1r85ttwgtj" path="res://scenes/Spawners/fuel_spawner.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://sg5n60qo5o8r" path="res://scenes/Spawners/spacestation_spawner.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://bkwdswg5lydid" path="res://scenes/Spawners/alien_spawner.tscn" id="8_gee14"]
 
 [node name="Game" type="Node2D"]
+
+[node name="19816" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(960, 540)
+texture = ExtResource("1_0tnpc")
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_lnu2h")
 
-[node name="Score" type="Label" parent="GameManager"]
-offset_left = 88.0
-offset_top = 103.0
-offset_right = 169.0
-offset_bottom = 126.0
-theme_override_font_sizes/font_size = 16
-text = "Score:"
+[node name="Shop" type="CanvasLayer" parent="."]
+script = ExtResource("2_p57ef")
+metadata/_custom_type_script = "uid://eospkfxr6y75"
 
-[node name="Fuel" type="Label" parent="GameManager"]
-offset_left = 88.0
-offset_top = 118.0
-offset_right = 169.0
-offset_bottom = 141.0
-theme_override_font_sizes/font_size = 16
-text = "Fuel:"
-metadata/_edit_use_anchors_ = true
+[node name="PanelContainer" type="PanelContainer" parent="Shop"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -20.0
+offset_right = 25.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Death" type="Label" parent="GameManager"]
+[node name="MarginContainer" type="MarginContainer" parent="Shop/PanelContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Shop/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CloseButton" type="Button" parent="Shop/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+action_mode = 0
+text = "Close"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Death" type="Label" parent="CanvasLayer"]
 visible = false
 offset_left = 288.0
 offset_top = 221.0
@@ -39,17 +63,83 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "You Died!"
 
-[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(179, 534)
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+offset_right = 48.0
+offset_bottom = 50.0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(781, 6)
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 15
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Score:"
+
+[node name="Fuel" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Fuel:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Coin" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Coin:"
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -53.0
+offset_right = 155.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="HealthLabel" type="Label" parent="CanvasLayer/PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Health:"
+
+[node name="HealthNUM" type="Label" parent="CanvasLayer/PanelContainer2/MarginContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "cH / mH"
+
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(179, 540)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="CoinSpawner" parent="." instance=ExtResource("3_u5sy4")]
+position = Vector2(1450, 540)
 
 [node name="AsteroidSpawner" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(731, 257)
+position = Vector2(960, 540)
 
 [node name="FuelSpawner" parent="." instance=ExtResource("4_lbhrr")]
-position = Vector2(731, 257)
+position = Vector2(960, 540)
 
 [node name="SpaceStationSpawner" parent="." instance=ExtResource("5_iywne")]
-position = Vector2(950, 257)
+position = Vector2(1450, 540)
+
+[node name="AlienSpawner" parent="." instance=ExtResource("8_gee14")]
+position = Vector2(1450, 540)

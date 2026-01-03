@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://biugpvosreqvm"]
+[gd_scene load_steps=6 format=3 uid="uid://biugpvosreqvm"]
 
 [ext_resource type="Script" uid="uid://c20x1kgr38a2f" path="res://scripts/space_station.gd" id="1_3mvrh"]
 [ext_resource type="Texture2D" uid="uid://bsr3lt0qk6moc" path="res://assets/nave tiro e cometa.png" id="2_vb2ps"]
+[ext_resource type="Texture2D" uid="uid://crtvg1kdw5hr5" path="res://icon.svg" id="3_vb2ps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mobw"]
 size = Vector2(914, 656)
@@ -42,44 +43,51 @@ debug_color = Color(0.877604, 0.240109, 0.613854, 0.42)
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
 
-[node name="Save Menu" type="Window" parent="."]
-initial_position = 2
-size = Vector2i(150, 100)
+[node name="Save Menu" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -65.5
+offset_top = -60.5
+offset_right = 65.5
+offset_bottom = 60.5
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Shop Button" type="Button" parent="Save Menu"]
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="MarginContainer" type="MarginContainer" parent="Save Menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="Save Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Shop Button" type="Button" parent="Save Menu/MarginContainer/GridContainer"]
+layout_mode = 2
 text = "Shop"
+icon = ExtResource("3_vb2ps")
+expand_icon = true
 
-[node name="Continue Button" type="Button" parent="Save Menu"]
-offset_top = 31.0
-offset_right = 79.0
-offset_bottom = 62.0
+[node name="Continue Button" type="Button" parent="Save Menu/MarginContainer/GridContainer"]
+layout_mode = 2
 text = "Continue"
+icon_alignment = 1
+expand_icon = true
 
-[node name="Save and Exit Button" type="Button" parent="Save Menu"]
-offset_top = 62.0
-offset_right = 111.0
-offset_bottom = 93.0
+[node name="Save and Exit Button" type="Button" parent="Save Menu/MarginContainer/GridContainer"]
+layout_mode = 2
 text = "Save and Exit
 "
-
-[node name="Shop" type="Window" parent="."]
-initial_position = 2
-size = Vector2i(285, 280)
-extend_to_title = true
-
-[node name="Label" type="Label" parent="Shop"]
-offset_left = 113.0
-offset_top = 5.0
-offset_right = 153.0
-offset_bottom = 28.0
-text = "Shop"
-horizontal_alignment = 1
+icon_alignment = 1
+expand_icon = true
 
 [connection signal="body_entered" from="Area1" to="." method="_on_area_1_body_entered"]
 [connection signal="body_exited" from="Area1" to="." method="_on_area_1_body_exited"]
 [connection signal="body_entered" from="Area2" to="." method="_on_area_2_body_entered"]
-[connection signal="pressed" from="Save Menu/Shop Button" to="." method="_on_shop_button_pressed"]
-[connection signal="pressed" from="Save Menu/Continue Button" to="." method="_on_continue_button_pressed"]
-[connection signal="close_requested" from="Shop" to="." method="_on_shop_close_requested"]
+[connection signal="pressed" from="Save Menu/MarginContainer/GridContainer/Shop Button" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Save Menu/MarginContainer/GridContainer/Continue Button" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="Save Menu/MarginContainer/GridContainer/Save and Exit Button" to="." method="_on_save_and_exit_button_pressed"]

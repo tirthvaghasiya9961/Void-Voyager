@@ -1,21 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://ctdnmu6o386rq"]
 
-[ext_resource type="Script" uid="uid://bapkxn72iw5s4" path="res://scripts/asteroid.gd" id="1_6mo6b"]
-[ext_resource type="Texture2D" uid="uid://bsr3lt0qk6moc" path="res://assets/nave tiro e cometa.png" id="1_akfqu"]
+[ext_resource type="Script" uid="uid://bapkxn72iw5s4" path="res://scripts/Obstacles/asteroid.gd" id="1_kwbp6"]
+[ext_resource type="Texture2D" uid="uid://bsr3lt0qk6moc" path="res://assets/nave tiro e cometa.png" id="2_1illy"]
 
 [node name="Asteroid" type="RigidBody2D"]
-script = ExtResource("1_6mo6b")
-speed = 200.0
+script = ExtResource("1_kwbp6")
 rotation_speed = 2.0
+speed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("1_akfqu")
+texture = ExtResource("2_1illy")
 region_enabled = true
 region_rect = Rect2(246, 649, 150, 179)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(0.6, 0.6)
 polygon = PackedVector2Array(-53.3333, 5, -55, -18.3333, -25, -48.3333, -6.66667, -50, 10, -66.6667, 25, -66.6667, 36.6667, -53.3333, 41.6667, -40, 53.3333, -28.3333, 53.3333, 41.6667, 40, 56.6667, 20, 66.6667, -5, 56.6667, -26.6667, 48.3333, -46.6667, 23.3333)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

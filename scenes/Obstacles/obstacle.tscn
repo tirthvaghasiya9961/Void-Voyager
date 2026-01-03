@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://k7qi5scvj5hk"]
 
-[ext_resource type="Script" uid="uid://d032nw4goj7b0" path="res://scripts/obstacle.gd" id="1_7ukg5"]
+[ext_resource type="Script" uid="uid://d032nw4goj7b0" path="res://scripts/Obstacles/obstacle.gd" id="1_171x2"]
 
 [node name="Obstacle" type="RigidBody2D"]
-script = ExtResource("1_7ukg5")
+script = ExtResource("1_171x2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
